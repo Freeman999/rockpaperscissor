@@ -11,6 +11,7 @@ input.onButtonPressed(Button.AB, function () {
     music.playTone(262, music.beat(BeatFraction.Whole))
     basic.pause(1000)
     music.playMelody("G E F D C5 - - - ", 170)
+    hand = 0
     hand = randint(0, 2)
     if (hand == 0) {
         basic.showLeds(`
@@ -23,7 +24,8 @@ input.onButtonPressed(Button.AB, function () {
     }
     if (hand == 1) {
         basic.showIcon(IconNames.Scissors)
-    } else {
+    }
+    if (hand == 2) {
         basic.showLeds(`
             . # # # .
             . # # # .
