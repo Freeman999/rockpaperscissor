@@ -1,4 +1,5 @@
 input.onButtonPressed(Button.A, function () {
+    basic.showIcon(IconNames.Happy)
     for (let index = 0; index < 2; index++) {
         music.playMelody("G B A G C5 B A B ", 500)
     }
@@ -21,13 +22,7 @@ input.onButtonPressed(Button.AB, function () {
             `)
     }
     if (hand == 1) {
-        basic.showLeds(`
-            # . . . #
-            . # . # .
-            . . # . .
-            # # . # #
-            # # . # #
-            `)
+        basic.showIcon(IconNames.Scissors)
     } else {
         basic.showLeds(`
             . # # # .
@@ -40,6 +35,7 @@ input.onButtonPressed(Button.AB, function () {
     basic.pause(5000)
 })
 input.onButtonPressed(Button.B, function () {
+    basic.showIcon(IconNames.Sad)
     for (let index = 0; index < 1; index++) {
         music.playMelody("F G E F D E C D ", 100)
     }
@@ -53,4 +49,10 @@ basic.showLeds(`
     # . # . #
     `)
 basic.pause(1000)
-basic.showIcon(IconNames.ArrowEast)
+basic.showLeds(`
+    . . . . .
+    . # . # .
+    # . . . #
+    . # . # .
+    . . . . .
+    `)
