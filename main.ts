@@ -1,17 +1,16 @@
-//  Punkte mit Variable "score" sammeln und bei Schütteln score anzeigen
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
+input.onButtonPressed(Button.A, function () {
+    hand += 1
     basic.showIcon(IconNames.Happy)
     for (let index = 0; index < 2; index++) {
         music.playMelody("G B A G C5 B A B ", 500)
     }
-    //  soll anzeigen, wieviele Punkte und +1
-    //  
-    basic.showString("hi!")
+    basic.showString("" + (score - 1) + "->" + score)
 })
-input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
-    
+input.onGesture(Gesture.Shake, function () {
+    basic.showString("score=" + score)
+})
+input.onButtonPressed(Button.AB, function () {
     basic.clearScreen()
-    score = 0
     music.playTone(262, music.beat(BeatFraction.Whole))
     basic.pause(1000)
     music.playTone(262, music.beat(BeatFraction.Whole))
@@ -28,11 +27,9 @@ input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
             . . # . .
             `)
     }
-    
     if (hand == 1) {
         basic.showIcon(IconNames.Scissors)
     }
-    
     if (hand == 2) {
         basic.showLeds(`
             . # # # .
@@ -42,14 +39,15 @@ input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
             . # # # .
             `)
     }
-    
     basic.pause(5000)
 })
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
+input.onButtonPressed(Button.B, function () {
+    hand += -1
     basic.showIcon(IconNames.Sad)
-    for (let index2 = 0; index2 < 1; index2++) {
+    for (let index = 0; index < 1; index++) {
         music.playMelody("F G E F D E C D ", 100)
     }
+    basic.showString("" + (score + 1) + "->" + score)
 })
 let hand = 0
 let score = 0
@@ -60,6 +58,7 @@ basic.showLeds(`
     # . # . #
     # . # . #
     `)
+score = 0
 basic.pause(1000)
 basic.showLeds(`
     . . . . .
