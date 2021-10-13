@@ -1,13 +1,25 @@
 input.onGesture(Gesture.ScreenDown, function () {
-    basic.showString("⭐" + score)
+    basic.showString("score:" + score)
+    if (score >= 0) {
+        basic.showIcon(IconNames.Happy)
+    } else {
+        basic.showIcon(IconNames.Confused)
+    }
 })
 input.onButtonPressed(Button.A, function () {
     score += 1
     basic.showIcon(IconNames.Happy)
+    pins.analogSetPitchVolume(82)
     for (let index = 0; index < 2; index++) {
         music.playMelody("G B A G C5 B A B ", 500)
     }
     basic.showString("" + (score - 1) + "->" + score)
+    if (score > 2) {
+        basic.showString("win!")
+        for (let index = 0; index < 5; index++) {
+            music.playMelody("G B A G C5 B A B ", 500)
+        }
+    }
 })
 input.onButtonPressed(Button.AB, function () {
     basic.clearScreen()
@@ -39,7 +51,7 @@ input.onButtonPressed(Button.AB, function () {
             . # # # .
             `)
     }
-    basic.pause(5000)
+    basic.pause(2000)
 })
 input.onButtonPressed(Button.B, function () {
     score += -1
@@ -48,6 +60,12 @@ input.onButtonPressed(Button.B, function () {
         music.playMelody("F G E F D E C D ", 100)
     }
     basic.showString("" + (score + 1) + "->" + score)
+    if (score < -2) {
+        basic.showString("looser!")
+        for (let index = 0; index < 3; index++) {
+            music.playMelody("F G E F D E C D ", 100)
+        }
+    }
 })
 let hand = 0
 let score = 0
