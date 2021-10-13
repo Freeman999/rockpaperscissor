@@ -1,13 +1,13 @@
+input.onGesture(Gesture.ScreenDown, function () {
+    basic.showString("⭐" + score)
+})
 input.onButtonPressed(Button.A, function () {
-    hand += 1
+    score += 1
     basic.showIcon(IconNames.Happy)
     for (let index = 0; index < 2; index++) {
         music.playMelody("G B A G C5 B A B ", 500)
     }
     basic.showString("" + (score - 1) + "->" + score)
-})
-input.onGesture(Gesture.Shake, function () {
-    basic.showString("score=" + score)
 })
 input.onButtonPressed(Button.AB, function () {
     basic.clearScreen()
@@ -42,7 +42,7 @@ input.onButtonPressed(Button.AB, function () {
     basic.pause(5000)
 })
 input.onButtonPressed(Button.B, function () {
-    hand += -1
+    score += -1
     basic.showIcon(IconNames.Sad)
     for (let index = 0; index < 1; index++) {
         music.playMelody("F G E F D E C D ", 100)
@@ -51,6 +51,7 @@ input.onButtonPressed(Button.B, function () {
 })
 let hand = 0
 let score = 0
+basic.clearScreen()
 basic.showLeds(`
     # . # . #
     # . # . #
