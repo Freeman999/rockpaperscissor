@@ -1,18 +1,28 @@
-# Punkte mit Variable "score" sammeln und bei Schütteln score anzeigen
+def on_gesture_screen_down():
+    basic.show_string("score:" + str(score))
+    if score >= 0:
+        basic.show_icon(IconNames.HAPPY)
+    else:
+        basic.show_icon(IconNames.CONFUSED)
+input.on_gesture(Gesture.SCREEN_DOWN, on_gesture_screen_down)
 
 def on_button_pressed_a():
+    global score
+    score += 1
     basic.show_icon(IconNames.HAPPY)
+    pins.analog_set_pitch_volume(82)
     for index in range(2):
         music.play_melody("G B A G C5 B A B ", 500)
-    # soll anzeigen, wieviele Punkte und +1
-    # 
-    basic.show_string("hi!")
+    basic.show_string("" + str((score - 1)) + ">" + str(score))
+    if score > 2:
+        basic.show_string("win!")
+        for index2 in range(5):
+            music.play_melody("G B A G C5 B A B ", 500)
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def on_button_pressed_ab():
-    global score, hand
+    global hand
     basic.clear_screen()
-    score = 0
     music.play_tone(262, music.beat(BeatFraction.WHOLE))
     basic.pause(1000)
     music.play_tone(262, music.beat(BeatFraction.WHOLE))
@@ -38,17 +48,25 @@ def on_button_pressed_ab():
             . # # # .
             . # # # .
             """)
-    basic.pause(5000)
+    basic.pause(2000)
 input.on_button_pressed(Button.AB, on_button_pressed_ab)
 
 def on_button_pressed_b():
+    global score
+    score += -1
     basic.show_icon(IconNames.SAD)
-    for index2 in range(1):
+    for index3 in range(1):
         music.play_melody("F G E F D E C D ", 100)
+    basic.show_string("" + str((score + 1)) + ">" + str(score))
+    if score < -2:
+        basic.show_string("looser!")
+        for index4 in range(3):
+            music.play_melody("F G E F D E C D ", 100)
 input.on_button_pressed(Button.B, on_button_pressed_b)
 
 hand = 0
 score = 0
+basic.clear_screen()
 basic.show_leds("""
     # . # . #
     # . # . #
@@ -56,6 +74,7 @@ basic.show_leds("""
     # . # . #
     # . # . #
     """)
+score = 0
 basic.pause(1000)
 basic.show_leds("""
     . . . . .
@@ -64,5 +83,3 @@ basic.show_leds("""
     . # . # .
     . . . . .
     """)
-
-    

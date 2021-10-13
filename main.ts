@@ -13,8 +13,9 @@ input.onButtonPressed(Button.A, function () {
     for (let index = 0; index < 2; index++) {
         music.playMelody("G B A G C5 B A B ", 500)
     }
-    basic.showString("" + (score - 1) + "->" + score)
+    basic.showString("" + (score - 1) + ">" + score)
     if (score > 2) {
+        music.playMelody("A B A B A B A B ", 500)
         basic.showString("win!")
         for (let index = 0; index < 5; index++) {
             music.playMelody("G B A G C5 B A B ", 500)
@@ -23,11 +24,10 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.AB, function () {
     basic.clearScreen()
-    music.playTone(262, music.beat(BeatFraction.Whole))
-    basic.pause(1000)
-    music.playTone(262, music.beat(BeatFraction.Whole))
-    basic.pause(1000)
-    music.playMelody("G E F D C5 - - - ", 170)
+    music.playTone(262, music.beat(BeatFraction.Half))
+    basic.pause(500)
+    music.playTone(262, music.beat(BeatFraction.Half))
+    music.playMelody("- - - G E F D C5 ", 170)
     hand = 0
     hand = randint(0, 2)
     if (hand == 0) {
@@ -59,10 +59,12 @@ input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 1; index++) {
         music.playMelody("F G E F D E C D ", 100)
     }
-    basic.showString("" + (score + 1) + "->" + score)
+    basic.showString("" + (score + 1) + ">" + score)
     if (score < -2) {
+        music.playMelody("C D C D C - C D ", 400)
+        music.playMelody("C D C D C - - - ", 400)
         basic.showString("looser!")
-        for (let index = 0; index < 3; index++) {
+        for (let index = 0; index < 1; index++) {
             music.playMelody("F G E F D E C D ", 100)
         }
     }
